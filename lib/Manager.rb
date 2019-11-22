@@ -6,7 +6,6 @@ class Manager
     @name = name
     @department = department
     @age = age
-    @employees = employees
 
     @@all << self
   end
@@ -37,11 +36,13 @@ class Manager
   end
 
   def self.all_departments
-    Self.all.map { |department| self.department == department}
+    @@all.select { |department| self.department == department}
   end
 
   def self.average_age
-    Self.all.interject { |age| self.age}/self.size
+    @ages = []
+    @ages << @@all.sum { |age| self.age}
+    @ages.sum\@ages.length
   end
 
 end
